@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
         def configure_permitted_parameters
                 # здесь зазрешаем strong parameters для username при sign up
-                puts __LINE__ , "====================", devise_parameter_sanitizer.inspect
+                # puts __LINE__ , "====================", devise_parameter_sanitizer.inspect
                 # devise_parameter_sanitizer.permit(:sign_up) << :username
                 devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
                 devise_parameter_sanitizer.permit(:sign_in, keys: [:username])
