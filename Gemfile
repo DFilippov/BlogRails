@@ -37,6 +37,8 @@ group :development, :test do
 
   gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'factory_bot_rails'
+
   # Adds support for Capybara system testing
   gem 'capybara', '>= 2.15'
 end
