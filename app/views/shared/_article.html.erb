@@ -1,0 +1,97 @@
+<div class="shadow p-3 mb-4 bg-info rounded">
+
+        <div class="container">
+                <div class="row">
+                        <div class="col col-xs-8">
+
+                                <%= link_to element, class: "highlight_results" do%>
+                                        <strong class="mr-auto">
+                                                <!-- if results are highlighted -->
+                                                <% if details.dig('highlight', 'title.analyzed') %>
+
+                                                        <% details.dig('highlight', 'title.analyzed').each do |snippet| %>
+                                                                <%= snippet.html_safe %>
+                                                        <% end %>
+
+                                                        <!-- if results are NOT highlighted -->
+                                                <% else %>
+                                                        <%= element.title.html_safe %>
+                                                <% end %>
+                                        </strong>
+                                <% end %>
+
+                        </div>
+
+                        <%# if current_user && current_user.id == element.user_id %>
+                        <% if current_user.try(:id) == element.user_id %>
+
+                                <%=
+                                        render 'shared/actions_button',
+                                               edit_path: edit_article_path(element),
+                                               delete_path: article_path(element)
+                                %>
+
+                        <% end %>
+                </div>
+
+
+                <div class="container">
+                        <br>
+                        <hr>
+
+                        <label class="highlight_results">
+                                <!-- if results are highlighted -->
+                                <% if details.dig('highlight', 'text.analyzed') %>
+
+                                        <% details.dig('highlight', 'text.analyzed').each do |snippet| %>
+                                                <%= snippet.html_safe %>
+                                        <% end %>
+
+                                        <!-- if results are NOT highlighted -->
+                                <% else %>
+                                        <%= element.text.html_safe %>
+                                <% end %>
+                        </label>
+
+                        <hr>
+
+
+                        <br>
+                        <div class="row">
+                                <div class="col">
+                                        <i style="font-size: 14px; color: #666666">Created at:  <%= element.created_at.localtime %></i>
+                                </div>
+
+                                <div class="col-xs-2">
+                                        <% if element.comments.empty? %>
+                                                <i class="form-group">No comments</i>
+                                        <% else %>
+                                                <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample<%= element.id %>" aria-expanded="false" aria-controls="collapseExample">
+                                                        Comments <span class="badge badge-pill badge-light"><%= element.comments.size %></span>
+                                                </button>
+                                        <% end %>
+                                </div>
+
+                                <div class="col-xs-2">
+                                        <% if current_user %>
+                                                <%= button_to 'Leave comment', article_path(element.id), class: 'btn btn-sm btn-primary ml-3', method: :get %>
+                                        <% else %>
+                                                <i class="form-group ml-3" style="color: #a23023">Sign in to leave comment</i>
+                                        <% end %>
+                                </div>
+                        </div>
+
+                        <div class="collapse" id="collapseExample<%= element.id %>">
+                                <div class="card card-body" style="background-color: #dce6de">
+                                        <% element.comments.each do |comment| %>
+
+                                                <%= render 'shared/comment', element: comment, details: details, user_id: element.try(:user_id) %>
+
+                                        <% end %>
+                                </div>
+                        </div>
+
+                </div>
+
+        </div>
+</div>

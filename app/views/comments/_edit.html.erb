@@ -1,0 +1,58 @@
+<div class="card card-footer" style="background-color: rgba(228,121,34,0.94)">
+
+        <div class="row align-baseline" >
+                <div class="col">
+                        <p >Comment editor</p>
+                </div>
+
+                <div class="col-xs-8">
+                        <div onclick="dismissForm(<%= comment.id%>)">
+                                <span class="material-icons">&#xe5cd;</span>
+                        </div>
+                </div>
+
+        </div>
+
+        <%= form_with model: comment, local: false  do |form| %>
+                <%= form.text_area :body,
+                                   class: "form-control",
+                                   id: "editted_comment_body_#{comment.id}",
+                                   onchange: "enableSubmitButton(#{comment.id})",
+                                   onkeypress: "enableSubmitButton(#{comment.id})"
+                %>
+
+                <br>
+                <%= form.submit 'Save changes',
+                                class: "btn btn-success",
+                                id: "submit-comment-edit-button-#{comment.id}",
+                                disabled: 'disabled'
+                    # ,
+                    #             data: { disable_with: "Saving..."}
+                %>
+
+                <script type="application/javascript">
+                        // function valueChanged(id) {
+                        //     const initialCommentText = document.getElementById(`comment_body_${id}`).innerText;
+                        //     const edittedCommentBodyText = document.getElementById(`editted_comment_body_${id}`).value;
+                        //
+                        //     if (initialCommentText !== edittedCommentBodyText) {
+                        //         return true;
+                        //     }
+                        // }
+
+                        function enableSubmitButton(id) {
+                            // if (valueChanged(id) == true){
+                                const button = document.getElementById(`submit-comment-edit-button-${id}`);
+                                button.disabled = ''
+                            // }
+                        }
+
+                        function dismissForm(id){
+                                const form = document.getElementById(`form_edit_comment_${id}`);
+                                form.innerHTML = ''
+                        }
+                </script>
+
+        <% end %>
+
+</div>

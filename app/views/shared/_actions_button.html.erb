@@ -1,0 +1,32 @@
+<div class="col-xs-2" align="center">
+
+        <div class="btn-group align-content-center">
+                <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Actions
+                </button>
+
+                <div class="dropdown-menu bg-dark btn-sm shadow" aria-labelledby="dropdownMenuButton">
+                        <div class="container ">
+
+                                <a class="dropdown-item">
+                                        <%= link_to 'Edit', edit_path, remote: true %>
+                                </a>
+
+                                <a class="dropdown-item">
+                                        <span style="color: #af2927">
+                                                <%=
+                                                        confirm_message ||= 'Warning! Are you sure you want to delete this?'
+                                                        link_to 'Delete',
+                                                                delete_path,
+                                                                method: :delete,
+                                                                data: { confirm: confirm_message },
+                                                                style: "color: #af2927",
+                                                                remote: true            # AJAX will take over the proceeding w/o refreshing the whole page (or asking server for another endpoint)
+                                                %>
+                                        </span>
+                                </a>
+                        </div>
+                </div>
+
+        </div>
+</div>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title>BlogRails</title>
+        
+        
+
+        <!-- Bootstrap -->
+        <link href="/css/bootstrap.css" rel="stylesheet">
+
+        <!--    jQuery-->
+        <script src="/packs/js/jquery-1.9.1.min.js"></script>
+
+        <script src="/packs/js/popper.js"></script>
+        <script src="/packs/js/bootstrap.bundle.js"></script>
+
+        <link rel="stylesheet" media="all" href="/assets/application-04024382391bb910584145d8113cf35ef376b55d125bb4516cebeb14ce788597.css" data-turbolinks-track="reload" />
+        <script src="/packs-test/js/application-31c0a7fd2aa09b742314.js" data-turbolinks-track="reload"></script>
+</head>
+
+<body class="bg-secondary">
+<nav class="navbar  bg-dark">
+        <a class="navbar-brand">Blog on Rails</a>
+
+        <a class="nav-link " href="/articles">Articles</a>
+
+        <a class="nav-link " href="/about">About</a>
+
+        <a class="nav-link" href="/terms">Terms</a>
+
+        <a class="nav-link" href="/contacts">Contacts</a>
+
+        <a class="nav-link">
+                <!--        заменили тэги с ссылками Sign in и Sign out (тк путь /users/sign_in и ...out - чтобы не было хардкода )-->
+                <!--        <a href="/users/sign_in">Sign in</a>-->
+                <!--        | <a href="/users/sign_out" data-method="delete">Sign out</a>-->
+                <!--стало:        -->
+
+                        <a href="/users/sign_in">Sign In</a>
+
+                <!--этот new_user_session_path путь можно взять
+      когда в браузере после основного пути/ укажем что-то заведомо неправильное
+      браузер выдаст страницу с ошибкой и списком всех путей -->
+                <!-- аналогично находим: destroy_user_session_path, но обязательно прописываем method: :delete
+                тк без него будет отработано как GET-метод и будет ошибка не найденного маршрута -->
+
+        </a>
+
+        <form class="form-inline" action="/search/index">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search in articles" aria-label="Search" data-toggle="tooltip" data-placement="bottom" title="Search in articles (title & text) and comments" name="search_query">
+                <form class="button_to" method="post" action="/search/index"><input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Search" /></form>
+        </form>
+
+
+</nav>
+
+
+<p class="notice"></p>
+<p class="alert">You need to sign in or sign up before continuing.</p>
+
+<div class="container justify">
+        <h2>Sign in :)</h2>
+
+<form class="new_user" id="new_user" action="/users/sign_in" accept-charset="UTF-8" method="post">
+  <div class="field">
+    <label for="user_email">Email</label><br />
+    <input autofocus="autofocus" autocomplete="email" type="email" value="" name="user[email]" id="user_email" />
+  </div>
+
+  <div class="field">
+    <label for="user_password">Password</label><br />
+    <input autocomplete="current-password" type="password" name="user[password]" id="user_password" />
+  </div>
+
+    <div class="field">
+      <input name="user[remember_me]" type="hidden" value="0" /><input type="checkbox" value="1" name="user[remember_me]" id="user_remember_me" />
+      <label for="user_remember_me">Remember me</label>
+    </div>
+
+  <div class="actions">
+    <input type="submit" name="commit" value="Log in" data-disable-with="Log in" />
+  </div>
+</form>
+
+  <a href="/users/sign_up">Sign up</a><br />
+
+  <a href="/users/password/new">Forgot your password?</a><br />
+
+
+
+
+
+</div>
+</body>
+</html>

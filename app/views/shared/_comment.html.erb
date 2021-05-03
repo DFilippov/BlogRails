@@ -1,0 +1,61 @@
+<!--<div class="row">-->
+
+                                        <% comment = element %>
+        <div id="shadow-<%= comment.id %>" class="shadow p-2 mb-3 rounded" style=" background-color: #9bc4f2">
+
+                <div class="container">
+                        <div class="row">
+
+                                <div class="col">
+                                        <label style="font-size: small">Commenter: <%= comment.author %></label><br>
+                                </div>
+                                <div class="col col-xs-8"></div>
+
+                                <div class="col col-xs-8">
+                                        <% if local_assigns.dig(:go_to_article) %>
+                                                <%= button_to 'Show article',
+                                                              article_path(comment.article_id),
+                                                              method: :get,
+                                                              class: 'btn btn-sm btn-primary ml-3'
+                                                %>
+                                        <% end %>
+                                </div>
+
+                                <div class="col col-xs-8">
+                                        <% if current_user.try(:id) == comment.user_id%>
+                                                <%=
+                                                        render 'shared/actions_button',
+                                                               edit_path: edit_comment_path(comment),
+                                                               delete_path: comment_path(comment)
+                                                %>
+                                        <% end %>
+                                </div>
+
+                        </div>
+
+                                <% if details.dig('highlight', 'body.analyzed') %>
+                                        <label id="comment_body_<%=comment.id%>" class="form-control highlight_results" style="font-size: small" >
+<% details.dig('highlight', 'body.analyzed').each do |snippet| %><%= snippet.html_safe %>
+                                                        <% end %></label>
+                                <% else %>
+                                        <label id="comment_body_<%=comment.id%>" class="form-control" style="font-size: small" ><%= comment.body %></label>
+                                <% end %>
+
+                                <div class="row">
+                                        <div class="col">
+                                                <label style="font-size: 12px; color: #666666"> Created at:  <%= comment.created_at.localtime %></label>
+                                        </div>
+                                        <div class="col">
+                                                <label id="comment-updated-badge-<%= comment.id %>"></label>
+                                        </div>
+
+                                </div>
+                        <div id="form_edit_comment_<%= comment.id %>"></div>
+
+                </div>
+
+
+        </div>
+
+
+<!--</div>-->
