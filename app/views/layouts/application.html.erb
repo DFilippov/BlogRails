@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title>BlogRails</title>
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
+
+        <!-- Bootstrap -->
+        <link href="/css/bootstrap.css" rel="stylesheet">
+
+        <!--    jQuery-->
+        <script src="/packs/js/jquery-1.9.1.min.js"></script>
+
+        <script src="/packs/js/popper.js"></script>
+        <script src="/packs/js/bootstrap.bundle.js"></script>
+
+        <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body class="bg-secondary">
+<nav class="navbar  bg-dark">
+        <a class="navbar-brand">Blog on Rails</a>
+
+        <a class="nav-link " href="<%= articles_path %>">Articles</a>
+
+        <a class="nav-link " href="<%= about_path %>">About</a>
+
+        <a class="nav-link" href="<%= terms_path %>">Terms</a>
+
+        <a class="nav-link" href="<%= contacts_path %>">Contacts</a>
+
+        <a class="nav-link">
+                <!--        заменили тэги с ссылками Sign in и Sign out (тк путь /users/sign_in и ...out - чтобы не было хардкода )-->
+                <!--        <a href="/users/sign_in">Sign in</a>-->
+                <!--        | <a href="/users/sign_out" data-method="delete">Sign out</a>-->
+                <!--стало:        -->
+
+                <% if user_signed_in? %>
+                        <%= current_user.username + " is logged in" %>
+                        | <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+                <% else %>
+                        <%= link_to 'Sign In', new_user_session_path %>
+                <% end %>
+
+                <!--этот new_user_session_path путь можно взять
+      когда в браузере после основного пути/ укажем что-то заведомо неправильное
+      браузер выдаст страницу с ошибкой и списком всех путей -->
+                <!-- аналогично находим: destroy_user_session_path, но обязательно прописываем method: :delete
+                тк без него будет отработано как GET-метод и будет ошибка не найденного маршрута -->
+
+        </a>
+
+        <form class="form-inline" action="/search/index">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search in articles" aria-label="Search" data-toggle="tooltip" data-placement="bottom" title="Search in articles (title & text) and comments" name="search_query">
+                <%= button_to 'Search', search_index_path, class: 'btn btn-outline-success my-2 my-sm-0', type: 'submit' %>
+        </form>
+
+
+</nav>
+
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<div class="container justify">
+        <%= yield %>
+</div>
+</body>
+</html>
