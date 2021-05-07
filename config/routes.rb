@@ -12,10 +12,13 @@ Rails.application.routes.draw do
 
   get 'terms' => 'pages#terms'
   get 'about' => 'pages#about'
+<<<<<<< HEAD
   # get 'search' => 'search#index'
   # get 'search/index', to: 'search#index'
   get 'search/index', action: :index, controller: 'search'
   # resource :search, only: [:index]
+=======
+>>>>>>> master
 
   # здесь модель Article но прописываем articles (во множественном числе)
   resources :articles  do

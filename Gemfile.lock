@@ -81,16 +81,20 @@ GEM
     childprocess (3.0.0)
     concurrent-ruby (1.1.7)
     crass (1.0.6)
+<<<<<<< HEAD
     database_cleaner (1.8.5)
     database_cleaner-active_record (1.8.0)
       activerecord
       database_cleaner (~> 1.8.0)
+=======
+>>>>>>> master
     devise (4.7.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+<<<<<<< HEAD
     diff-lcs (1.4.4)
     erubi (1.9.0)
     execjs (2.7.0)
@@ -99,6 +103,10 @@ GEM
     factory_bot_rails (6.1.0)
       factory_bot (~> 6.1.0)
       railties (>= 5.0.0)
+=======
+    erubi (1.9.0)
+    execjs (2.7.0)
+>>>>>>> master
     ffi (1.13.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -169,6 +177,7 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
+<<<<<<< HEAD
     rspec-core (3.10.0)
       rspec-support (~> 3.10.0)
     rspec-expectations (3.10.0)
@@ -186,6 +195,8 @@ GEM
       rspec-mocks (~> 3.9)
       rspec-support (~> 3.9)
     rspec-support (3.10.0)
+=======
+>>>>>>> master
     rubyzip (2.3.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -200,8 +211,11 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+<<<<<<< HEAD
     shoulda-matchers (4.4.1)
       activesupport (>= 4.2.0)
+=======
+>>>>>>> master
     spring (2.1.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -252,17 +266,26 @@ DEPENDENCIES
   bootstrap (~> 4.5.3)
   byebug
   capybara (>= 2.15)
+<<<<<<< HEAD
   database_cleaner-active_record
   devise
   factory_bot_rails
+=======
+  devise
+>>>>>>> master
   jbuilder (~> 2.7)
   listen (~> 3.2)
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.4)
+<<<<<<< HEAD
   rspec-rails
   sass-rails (>= 6)
   selenium-webdriver
   shoulda-matchers
+=======
+  sass-rails (>= 6)
+  selenium-webdriver
+>>>>>>> master
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3 (~> 1.4)

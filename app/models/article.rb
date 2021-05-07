@@ -1,6 +1,7 @@
 class Article < ApplicationRecord
 
         # Relation
+<<<<<<< HEAD
         belongs_to :user , optional: :true
         has_many :comments
 
@@ -25,4 +26,11 @@ class Article < ApplicationRecord
         def last_comment
                 comments.last
         end
+=======
+        belongs_to :user
+        has_many :comments
+
+        # настраиваем валидацию полей (свойств) модели
+        validates :title, :text, presence: true
+>>>>>>> master
 end

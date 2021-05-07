@@ -1,0 +1,46 @@
+<h1>New article</h1>
+<br>
+
+<!-- здесь article в единственном числе -->
+<!-- команда form_for :__  - это код rails, 
+	который создает форму с нужными атрибутами  -->
+<!-- !!! есть отличие от Sinatra: всегда используется '< %=' со знаком '=' 
+НО закрывающий синтаксис с end без '=' :     < % end %>   !!!!!
+ТОЖЕ с if:      < % if ... %> -->
+
+<%= form_for :article, url: articles_path do |f| %>
+<!-- можно еще такой синтаксис:
+       form_for :article, url: '/articles'-->
+        <% if @article && @article.errors.any? %>
+                <% @article.errors.full_messages.each do |error| %>
+                <ul>
+                        <li><%= error %></li>
+                </ul>
+                        <% end %>
+        <% end %>
+
+
+        <form>
+                <div class="form-group">
+                        <label><%= f.label :title %></label>
+                        <%= f.text_field :title , type: 'text', class: 'form-control'%>
+<!--                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">-->
+                </div>
+                <div class="form-group">
+                        <label for="exampleInputPassword1">Article text</label>
+                        <%= f.text_area :text, class: 'form-control', rows: '4'%>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+<% end %>
+
+
+<!-- если посмотреть rake routes
+там покажет для экшена '/articles/new' не POST метод, а GET
+поэтому добавили в начале выражения url: '/articles'
+это нужно чтобы перенаправить на следующий route (в списке rake routes):
+POST  	 /articles(.:format)		articles#create
+то есть создание новой записи (articles#create)
+ -->
