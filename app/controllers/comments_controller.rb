@@ -23,12 +23,15 @@ class CommentsController < ApplicationController
                         # render 'create'
                 end
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                 # puts __LINE__, "===============", current_user.inspect
 
                 # redirect_to article_path(@article)
 
 >>>>>>> master
+=======
+>>>>>>> testing/rspec
         end
 
 
