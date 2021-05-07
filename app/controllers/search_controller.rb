@@ -1,5 +1,6 @@
 class SearchController < ApplicationController
         def index
+<<<<<<< HEAD
                 # add % symbol for SQL-query in content of article's titles and text (the same is for comment's body)
                 @search_text = params[:search_query]
                 search_query = '%' + @search_text.downcase + '%'
@@ -18,5 +19,8 @@ class SearchController < ApplicationController
                 @found_articles = [articles_by_text, articles_by_title, articles_by_comment_body]
                 @found_articles.flatten!
                 @found_articles.uniq!
+=======
+
+>>>>>>> improvementUI
         end
 end

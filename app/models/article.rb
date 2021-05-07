@@ -29,10 +29,14 @@ class Article < ApplicationRecord
         end
 =======
         belongs_to :user
+<<<<<<< HEAD
 =======
         belongs_to :user , optional: :true
 >>>>>>> testing/rspec
         has_many :comments
+=======
+        has_many :comments, dependent: :destroy
+>>>>>>> improvementUI
 
         # Validation
         validates :title, :text, presence: true
