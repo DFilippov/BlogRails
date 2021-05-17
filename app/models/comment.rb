@@ -10,7 +10,5 @@ class Comment < ApplicationRecord
   validates :body, presence: true
   validates :body, length: { maximum: 4000 }
 
-  belongs_to :article
-  validates :body, presence: true
 
 end

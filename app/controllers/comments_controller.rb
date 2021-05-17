@@ -65,6 +65,36 @@ class CommentsController < ApplicationController
         end
 
 
+        def edit
+                @comment = Comment.find(params[:id])
+
+                # respond_to do |format|
+                #         format.js { comment_id: }
+                # end
+
+        end
+
+        def update
+                @comment = Comment.find(params[:id])
+                @comment.body = comment_params.dig(:body) if comment_params.dig(:body)
+
+                # @comment.save
+                if @comment.save
+                        # @comment.reindex
+                        broadcast_updates(@comment, 'edit')
+                        # puts __LINE__ , "===== COMMENT IS SAVED", @comment.inspect
+                end
+        end
+
+        def destroy
+                @comment = Comment.find(params[:id])
+                # @comment.body = 'COMMENT IS DELETED'
+                if @comment.destroy
+                        broadcast_updates(@comment, 'destroy')
+                end
+        end
+
+
         # PRIVATE METHODS
 
         # как и в статьях, делаем защиту метода -  private

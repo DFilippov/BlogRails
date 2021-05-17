@@ -1,10 +1,5 @@
 class SearchController < ApplicationController
         def index
-
-                # add % symbol for SQL-query in content of article's titles and text (the same is for comment's body)
-                @search_text = params[:search_query]
-                search_query = '%' + @search_text.downcase + '%'
-
                 # # Commented: custom search (finds words in article (in title & text) and in comments
                 # # minimalistic search logic: e.g. query 'ten' results in: 'ten', 'content' etc.
                 # # add % symbol for SQL-query in content of article's titles and text
@@ -47,11 +42,6 @@ class SearchController < ApplicationController
                 @search_results.with_hit.each do |element, details|
                         # puts __LINE__ , "=========", element.class, element.inspect, details
                 end
-
-
-                @found_articles = [articles_by_text, articles_by_title, articles_by_comment_body]
-                @found_articles.flatten!
-                @found_articles.uniq!
 
         end
 end
