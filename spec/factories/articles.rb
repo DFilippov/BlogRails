@@ -11,7 +11,7 @@ FactoryBot.define do
                         after :create do |article, evaluator|
 
                                 # creating list of 3 comments
-                                create_list :comment, 3, article: article
+                                create_list :element, 3, article: article
                         end
                 end
         end

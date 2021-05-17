@@ -25,6 +25,7 @@ Rails.application.routes.draw do
           resources :comments, only: [:create]
   end
 
+  resources :comments
 
   # resource - в единственном числе (отличается от resources)
   # - множественное используется в случаях вроде: /articles/1   /articles/2 и т.д.

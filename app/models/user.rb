@@ -7,7 +7,8 @@ class User < ApplicationRecord
             :rememberable,
             :validatable
 
-  # Add relation to articles
+  # Add relations
   has_many :articles
+  has_many :comments
 
 end

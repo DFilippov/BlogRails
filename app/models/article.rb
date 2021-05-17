@@ -1,8 +1,10 @@
 class Article < ApplicationRecord
 
+        # Switch SearchKick Gem On for the model
+        searchkick
+
         # Relation
-<<<<<<< HEAD
-<<<<<<< HEAD
+
         belongs_to :user , optional: :true
         has_many :comments
 
@@ -27,22 +29,15 @@ class Article < ApplicationRecord
         def last_comment
                 comments.last
         end
-=======
+
         belongs_to :user
-<<<<<<< HEAD
-=======
-        belongs_to :user , optional: :true
->>>>>>> testing/rspec
-        has_many :comments
-=======
+
         has_many :comments, dependent: :destroy
->>>>>>> improvementUI
+
 
         # Validation
         validates :title, :text, presence: true
-<<<<<<< HEAD
->>>>>>> master
-=======
+
         validates :title, length: { maximum: 140 }
         validates :text, length: { maximum: 4000 }
 
@@ -62,5 +57,5 @@ class Article < ApplicationRecord
         def last_comment
                 comments.last
         end
->>>>>>> testing/rspec
+
 end

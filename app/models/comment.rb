@@ -1,8 +1,7 @@
 class Comment < ApplicationRecord
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> testing/rspec
+
+  # Switch SearchKick Gem On for the model
+  searchkick
 
   #Relation
   belongs_to :article
@@ -11,11 +10,7 @@ class Comment < ApplicationRecord
   validates :body, presence: true
   validates :body, length: { maximum: 4000 }
 
-<<<<<<< HEAD
-=======
   belongs_to :article
   validates :body, presence: true
->>>>>>> master
-=======
->>>>>>> testing/rspec
+
 end
