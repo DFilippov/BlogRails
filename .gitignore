@@ -43,3 +43,6 @@ yarn-debug.log*
 # Ignore all .DS_Store
 *.DS_Store
 ._*
+
+#Ignore idea files
+.idea
