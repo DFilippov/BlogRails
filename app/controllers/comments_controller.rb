@@ -2,6 +2,24 @@ class CommentsController < ApplicationController
 
         before_action :authenticate_user!, only: [:new, :create]
 
+        def index
+                per_page = ENV['comments_per_page'].to_i
+                @article_id = params[:article_id]
+                @comments = Comment.where('article_id = ?', @article_id).order(created_at: :desc).pluck
+                comment_struct = Struct.new(:id, :author, :body, :article_id, :created_at, :upated_at, :user_id,)
+
+                # mapping comments Array to Struct
+                # (so that in views there will be access to properties with help of dot syntax, e.g. comment.id)
+                @comments.map! do |comment|
+                          comment_struct.new(comment[0], comment[1], comment[2], comment[3], comment[4], comment[5], comment[6])
+                end
+
+                # for the first query of comments list - number of the batch will be 0, further it will be fetched from params
+                @batch_number = params[:batch_number].to_i || 0
+                slice_start = @batch_number * per_page
+                @comments = @comments.slice(slice_start, per_page)
+
+        end
 
 
         def create
@@ -19,7 +37,6 @@ class CommentsController < ApplicationController
                 comment.author = current_user.username
                 comment.user_id = current_user.id
 
-                # TODO: improve (redirect_to twice)
                 if comment.save
                         redirect_to articles_path
                 else
@@ -27,11 +44,6 @@ class CommentsController < ApplicationController
                         # render 'create'
                 end
 
-                # puts __LINE__, "===============", current_user.inspect
-
-                # redirect_to article_path(@article)
-
-
         end
 
 
@@ -43,6 +55,7 @@ class CommentsController < ApplicationController
                 # end
 
         end
+
 
         def update
                 @comment = Comment.find(params[:id])
@@ -56,35 +69,6 @@ class CommentsController < ApplicationController
                 end
         end
 
-        def destroy
-                @comment = Comment.find(params[:id])
-                # @comment.body = 'COMMENT IS DELETED'
-                if @comment.destroy
-                        broadcast_updates(@comment, 'destroy')
-                end
-        end
-
-
-        def edit
-                @comment = Comment.find(params[:id])
-
-                # respond_to do |format|
-                #         format.js { comment_id: }
-                # end
-
-        end
-
-        def update
-                @comment = Comment.find(params[:id])
-                @comment.body = comment_params.dig(:body) if comment_params.dig(:body)
-
-                # @comment.save
-                if @comment.save
-                        # @comment.reindex
-                        broadcast_updates(@comment, 'edit')
-                        # puts __LINE__ , "===== COMMENT IS SAVED", @comment.inspect
-                end
-        end
 
         def destroy
                 @comment = Comment.find(params[:id])

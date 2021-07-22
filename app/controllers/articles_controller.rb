@@ -6,7 +6,10 @@ class ArticlesController < ApplicationController
 
 	# index method gives all items of model (article)
 	def index
-		@articles = Article.all
+		page = params[:page]
+		per_page = ENV['article_per_page'].to_i
+		@articles = Article.page(page).per(per_page)
+
 	end
 
 
