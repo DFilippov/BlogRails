@@ -1,6 +1,6 @@
 <!--<div class="row">-->
+                                        <% comment ||= element %>
 
-                                        <% comment = element %>
         <div id="shadow-<%= comment.id %>" class="shadow p-2 mb-3 rounded" style=" background-color: #9bc4f2">
 
                 <div class="container">
@@ -22,11 +22,12 @@
                                 </div>
 
                                 <div class="col col-xs-8">
+
                                         <% if current_user.try(:id) == comment.user_id%>
                                                 <%=
                                                         render 'shared/actions_button',
-                                                               edit_path: edit_comment_path(comment),
-                                                               delete_path: comment_path(comment),
+                                                               edit_path: edit_comment_path(comment.id),
+                                                               delete_path: comment_path(comment.id),
                                                                remote: true
                                                 %>
                                         <% end %>
@@ -34,12 +35,12 @@
 
                         </div>
 
-                                <% if details.dig('highlight', 'body.analyzed') %>
-                                        <label id="comment_body_<%=comment.id%>" class="form-control highlight_results" style="font-size: small" >
+                                <% if details && details.dig('highlight', 'body.analyzed') %>
+                                        <label id="comment_body_<%=comment.id%>" class="form-check highlight_results" style="font-size: small" >
 <% details.dig('highlight', 'body.analyzed').each do |snippet| %><%= snippet.html_safe %>
                                                         <% end %></label>
                                 <% else %>
-                                        <label id="comment_body_<%=comment.id%>" class="form-control" style="font-size: small" ><%= comment.body %></label>
+                                        <label id="comment_body_<%=comment.id%>" class="form-check" style="font-size: small" ><%= comment.body %></label>
                                 <% end %>
 
                                 <div class="row">
