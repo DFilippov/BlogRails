@@ -1,0 +1,14 @@
+const commentsList = $("#comments_list_article_<%= @article_id %>")
+
+renderComments(commentsList)
+
+function renderComments(element) {
+    <% html = '' %>
+
+    <% @comments.each do |comment| %>
+    <% html += render 'shared/comment', comment: comment, details: {} %>
+    <% end %>
+
+    element.append("<%= escape_javascript html.html_safe%>")
+}
+
