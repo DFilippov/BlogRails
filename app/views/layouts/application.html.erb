@@ -20,6 +20,8 @@
         <!-- Turbolinks -->
         <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
         <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+        <%= javascript_pack_tag 'article.js', 'data-turbolinks-track': 'reload' %>
 </head>
 
 <body class="bg-secondary">
@@ -73,5 +75,7 @@
 <div class="container justify">
         <%= yield %>
 </div>
+
 </body>
 </html>
+
